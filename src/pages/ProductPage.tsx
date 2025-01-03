@@ -5,7 +5,10 @@ const ProductPage: FC = () => {
   return (
     <>
       <Header index={1} />
-      <div>ProductPage</div>
+
+      <section className="flex-grow flex justify-center items-center">
+        <div>ProductPage</div>
+      </section>
       <Footer />
     </>
   );
