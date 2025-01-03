@@ -36,13 +36,14 @@ const apiClient: AxiosInstance = axios.create({
   },
 });
 
-const getPopularMovie = async (
-  language: string = "en-US",
-  page: number = 1
+const getListMovie = async (
+  path: string,
+  page: number = 1,
+  language: string = "en-US"
 ): Promise<MovieListResponseType> => {
   try {
     const response: AxiosResponse<MovieListResponseType> = await apiClient.get(
-      "/popular",
+      path,
       {
         params: { language, page },
       }
@@ -58,4 +59,20 @@ const getPopularMovie = async (
   }
 };
 
-export { getPopularMovie };
+const getPopularMovie = async (
+  page: number = 1,
+  language: string = "en-US"
+): Promise<MovieListResponseType> => {
+  const response = await getListMovie("/popular", page, language);
+  return response;
+};
+
+const getTopRateMovie = async (
+  page: number = 1,
+  language: string = "en-US"
+): Promise<MovieListResponseType> => {
+  const response = await getListMovie("/top_rated", page, language);
+  return response;
+};
+
+export { getPopularMovie, getTopRateMovie };

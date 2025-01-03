@@ -10,12 +10,12 @@ const Header: FC<{ index: number }> = (props) => {
   ];
 
   return (
-    <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+    <header className="sticky top-0 z-50 bg-white border-gray-200">
+      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <a href="/" className="flex items-center">
             <img src={appLogo} className="mr-3 h-6 sm:h-9" alt="Movie Center" />
-            <span className="text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="text-xl font-semibold whitespace-nowrap">
               Movie Center
             </span>
           </a>
@@ -23,7 +23,7 @@ const Header: FC<{ index: number }> = (props) => {
           <button
             onClick={() => setShowMobileMenu(!showMobileMenu)}
             type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -60,8 +60,8 @@ const Header: FC<{ index: number }> = (props) => {
                     aria-current={props.index === index ? "page" : undefined}
                     className={`block py-2 pr-4 pl-3 ${
                       props.index === index
-                        ? "text-white bg-primary-700 rounded lg:bg-transparent lg:text-primary-700 dark:text-white"
-                        : "text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent lg:hover:text-primary-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        ? "text-white bg-primary-700 rounded lg:bg-transparent lg:text-primary-700"
+                        : "text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent lg:hover:text-primary-700"
                     }`}
                   >
                     {item.title}

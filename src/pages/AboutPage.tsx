@@ -78,7 +78,7 @@ const AboutPage: FC = () => {
     <>
       <Header index={2} />
       <section className="flex-grow flex justify-center items-center">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 grid-cols-1">
             <div className="hidden lg:block lg:mb-0 mb-10">
               <div className="group w-full h-full">
