@@ -84,33 +84,35 @@ const ProductPage: FC = () => {
     <>
       <Header index={1} />
       <section className="flex-grow flex justify-center items-center">
-        <div className="max-w-screen-xl">
-          <ul className="inline-flex -space-x-px text-xs md:text-sm">
-            {listMode.map((value, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => {
-                    setPage(1);
-                    setMode(value.value);
-                  }}
-                  className={`flex items-center justify-center px-2 h-6 md:px-3 md:h-8 ${
-                    value.value === 1 ? "rounded-s-lg" : "rounded-e-lg"
-                  } ${
-                    mode === value.value
-                      ? "text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
-                      : "leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-                  } `}
-                >
-                  {value.title}
-                </button>
-              </li>
-            ))}
-          </ul>
+        <div className="max-w-screen-xl md:px-3">
+          <div className="w-full flex justify-center">
+            <ul className="inline-flex -space-x-px text-xs md:text-sm">
+              {listMode.map((value, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => {
+                      setPage(1);
+                      setMode(value.value);
+                    }}
+                    className={`flex items-center justify-center px-2 h-6 md:px-3 md:h-8 ${
+                      value.value === 1 ? "rounded-s-lg" : "rounded-e-lg"
+                    } ${
+                      mode === value.value
+                        ? "text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
+                        : "leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                    } `}
+                  >
+                    {value.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="grid gap-3 lg:gap-6 grid-cols-1 lg:grid-cols-2 p-3 lg:py-6 lg:px-0">
             {data.map((value, index) => (
               <PosterCard
                 key={index}
-                href="#"
+                href={`/product/${value.id}`}
                 imgUrl={IMAGE_URL + value.poster_path}
                 title={value.title}
                 price={calculateFilmPrice(

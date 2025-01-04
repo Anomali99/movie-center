@@ -61,7 +61,7 @@ export const Pagination: FC<{
   if (max === 1) return null;
 
   return (
-    <nav>
+    <nav className="w-full flex justify-center lg:justify-end">
       <ul className="inline-flex -space-x-px text-xs md:text-sm">
         {page > 1 && (
           <li>

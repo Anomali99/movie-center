@@ -27,6 +27,44 @@ type MovieListResponseType = {
   total_results?: number;
 };
 
+type GenreType = {
+  id: number;
+  name: string;
+};
+
+type ProductionCompaniesType = {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+};
+
+type MovieDetailResponseType = {
+  adult: boolean;
+  backdrop_path: string;
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  budget: number;
+  origin_country: string[];
+  genres: GenreType[];
+  production_companies: ProductionCompaniesType[];
+};
+
 const apiClient: AxiosInstance = axios.create({
   baseURL: BASE_API,
   timeout: 3000,
@@ -55,7 +93,7 @@ const getListMovie = async (
     } else {
       console.error("Unexpected Error:", error);
     }
-    throw new Error("Failed to fetch popular movies");
+    throw new Error(`Failed to fetch ${path} movies`);
   }
 };
 
@@ -63,7 +101,7 @@ const getPopularMovie = async (
   page: number = 1,
   language: string = "en-US"
 ): Promise<MovieListResponseType> => {
-  const response = await getListMovie("/popular", page, language);
+  const response = await getListMovie("popular", page, language);
   return response;
 };
 
@@ -71,8 +109,23 @@ const getTopRateMovie = async (
   page: number = 1,
   language: string = "en-US"
 ): Promise<MovieListResponseType> => {
-  const response = await getListMovie("/top_rated", page, language);
+  const response = await getListMovie("top_rated", page, language);
   return response;
 };
 
-export { getPopularMovie, getTopRateMovie };
+const getDetailMovie = async (id: number): Promise<MovieDetailResponseType> => {
+  try {
+    const response: AxiosResponse<MovieDetailResponseType> =
+      await apiClient.get(id.toString());
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.message);
+    } else {
+      console.error("Unexpected Error:", error);
+    }
+    throw new Error("Failed to fetch popular movies");
+  }
+};
+
+export { getPopularMovie, getTopRateMovie, getDetailMovie };
